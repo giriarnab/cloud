@@ -1,0 +1,235 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="de67f2d8-97c1-49d0-975e-76f9215fc816" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/TerraformAws/api.tf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TerraformAws/iam.tf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TerraformAws/lambda.tf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TerraformAws/orchestrator/service/greeter.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TerraformAws/orchestrator/service/greeter.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TerraformAws/outputs.tf" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TerraformAws/.terraform.lock.hcl" beforeDir="false" afterPath="$PROJECT_DIR$/TerraformAws/.terraform.lock.hcl" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TerraformAws/main.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TerraformAws/main.tf" beforeDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Python Script" />
+        <option value="Config" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="NextEditCompletionFeaturesState">
+    <decayedCancelled>
+      <entry key="MS100" value="1.294891511390316" />
+      <entry key="MS500" value="3.7757640216732846" />
+      <entry key="S2" value="7.39326405551358" />
+      <entry key="S5" value="9.198594179401361" />
+      <entry key="S10" value="10.136692631678082" />
+      <entry key="S30" value="12.841912649544556" />
+      <entry key="S60" value="16.427912086719594" />
+      <entry key="M2" value="23.312679632367093" />
+      <entry key="M5" value="45.97969826872575" />
+      <entry key="M10" value="87.99981751402072" />
+      <entry key="M15" value="122.07273274554692" />
+      <entry key="M30" value="182.2794578486206" />
+      <entry key="H1" value="230.02555566642434" />
+      <entry key="H2" value="266.1018002996913" />
+      <entry key="H4" value="319.23373856454157" />
+      <entry key="D1" value="512.2544325091726" />
+      <entry key="W1" value="587.3441042188795" />
+    </decayedCancelled>
+    <decayedSelected>
+      <entry key="MS100" value="0.0" />
+      <entry key="MS500" value="0.0" />
+      <entry key="S2" value="3.783371249344646E-88" />
+      <entry key="S5" value="1.0743643369574739E-35" />
+      <entry key="S10" value="3.2777497417549594E-18" />
+      <entry key="S30" value="1.4854519125925123E-6" />
+      <entry key="S60" value="0.001218791307067769" />
+      <entry key="M2" value="0.03492381857146756" />
+      <entry key="M5" value="0.27771959847785244" />
+      <entry key="M10" value="0.7214830895191346" />
+      <entry key="M15" value="1.143429634728779" />
+      <entry key="M30" value="2.0223745404132907" />
+      <entry key="H1" value="2.809947300124874" />
+      <entry key="H2" value="3.507132197250132" />
+      <entry key="H4" value="4.878046972324487" />
+      <entry key="D1" value="10.394823445290697" />
+      <entry key="W1" value="12.574005987627208" />
+    </decayedSelected>
+    <decayedShown>
+      <entry key="MS100" value="1.2675950079465523" />
+      <entry key="MS500" value="3.7348673552851057" />
+      <entry key="S2" value="7.367722574132198" />
+      <entry key="S5" value="9.1858554115314" />
+      <entry key="S10" value="10.12976479113647" />
+      <entry key="S30" value="12.83926427964017" />
+      <entry key="S60" value="16.427526672297404" />
+      <entry key="M2" value="23.345886931147767" />
+      <entry key="M5" value="46.254578076146416" />
+      <entry key="M10" value="88.7175951144888" />
+      <entry key="M15" value="123.21182840428897" />
+      <entry key="M30" value="184.2972289910848" />
+      <entry key="H1" value="232.8319074818264" />
+      <entry key="H2" value="269.6066199378807" />
+      <entry key="H4" value="324.1103755275664" />
+      <entry key="D1" value="522.6489102934809" />
+      <entry key="W1" value="599.918055132958" />
+    </decayedShown>
+  </component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 0,
+  &quot;fromUser&quot;: false
+}</component>
+  <component name="ProjectId" id="3M2kIo7kNfYfG4Kl0Ow4RiNOhrb" />
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "ModuleVcsDetector.initialDetectionPerformed": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "RunOnceActivity.typescript.service.memoryLimit.init": "true",
+    "git-widget-placeholder": "main",
+    "javascript.nodejs.core.library.configured.version": "26.13.1",
+    "javascript.nodejs.core.library.typings.version": "26.6.6",
+    "javascript.preferred.runtime.type.id": "node",
+    "last_opened_file_path": "/Users/arnab/Workspace/cloud",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.jshint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.jshint": "",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "python.packages.toolwindow.project.migrated.to.right.top.v2": "true",
+    "settings.editor.selected.configurable": "terminal"
+  }
+}]]></component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$" />
+    </key>
+  </component>
+  <component name="RunManager">
+    <configuration default="true" type="PythonConfigurationType" factoryName="Python">
+      <module name="cloud" />
+      <option name="ENV_FILES" value="" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="RUN_TOOL" value="" />
+      <option name="RUN_AS_SCRIPT" value="" />
+      <option name="SCRIPT_NAME" value="" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration default="true" type="Tox" factoryName="Tox">
+      <module name="cloud" />
+      <option name="ENV_FILES" value="" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="RUN_TOOL" value="" />
+      <option name="RUN_AS_SCRIPT" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration default="true" type="docs" factoryName="Docutils task">
+      <module name="cloud" />
+      <option name="ENV_FILES" value="" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="RUN_TOOL" value="" />
+      <option name="RUN_AS_SCRIPT" value="" />
+      <option name="docutils_input_file" value="" />
+      <option name="docutils_output_file" value="" />
+      <option name="docutils_params" value="" />
+      <option name="docutils_task" value="" />
+      <option name="docutils_open_in_browser" value="false" />
+      <method v="2" />
+    </configuration>
+    <configuration default="true" type="docs" factoryName="Sphinx task">
+      <module name="cloud" />
+      <option name="ENV_FILES" value="" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="RUN_TOOL" value="" />
+      <option name="RUN_AS_SCRIPT" value="" />
+      <option name="docutils_input_file" value="" />
+      <option name="docutils_output_file" value="" />
+      <option name="docutils_params" value="" />
+      <option name="docutils_task" value="" />
+      <option name="docutils_open_in_browser" value="false" />
+      <method v="2" />
+    </configuration>
+  </component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="bundled-python-sdk-34611be1ca5a-e0583fc556d1-com.jetbrains.pycharm.pro.sharedIndexes.bundled-PY-263.7307.206" />
+      </set>
+    </attachedChunks>
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="de67f2d8-97c1-49d0-975e-76f9215fc816" name="Changes" comment="" />
+      <created>1794555972937</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1794555972937</updated>
+    </task>
+    <servers />
+  </component>
+  <component name="TerminalProjectNonSharedOptionsProvider">
+    <envs>
+      <env key="PATH" value="$USER_HOME$/.local/share/aws-cli:/opt/miniconda3/bin:/opt/miniconda3/condabin:/opt/homebrew/bin:/opt/homebrew/sbin:/usr/local/bin:/System/Cryptexes/App/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin:/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/local/bin:/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/bin:/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/appleinternal/bin:/opt/pkg/env/active/bin:/opt/pmk/env/global/bin" />
+    </envs>
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+</project>
