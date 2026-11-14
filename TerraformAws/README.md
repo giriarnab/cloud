@@ -21,5 +21,3 @@ See the [AWS architecture diagram](ARCHITECTURE.drawio) (editable in diagrams.ne
      - disable_execute_api_endpoint = true
 
 ![img.png](img.png)
-
-![img_1.png](img_1.png)
