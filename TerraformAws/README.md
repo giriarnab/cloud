@@ -18,5 +18,4 @@ See the [AWS architecture diagram](ARCHITECTURE.drawio) (editable in diagrams.ne
      - curl "$(terraform output -raw custom_domain_api_http_url)/greet?Name=Arnab"
      - curl "$(terraform output -raw custom_domain_api_rest_url)/greet?Name=Arnab"
 
-
 ![img.png](img.png)
