@@ -1,0 +1,37 @@
+<mxfile host="app.diagrams.net" modified="2026-11-14T00:00:00.000Z" agent="Codex" version="24.7.17" type="device">
+  <diagram id="terraformaws" name="TerraformAws AWS Architecture">
+    <mxGraphModel dx="1422" dy="794" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1600" pageHeight="1000" math="0" shadow="0">
+      <root>
+        <mxCell id="0"/><mxCell id="1" parent="0"/>
+        <mxCell id="account" value="AWS Cloud · us-east-2" style="swimlane;html=1;startSize=30;rounded=1;fillColor=#F7F9FC;strokeColor=#8796A5;fontStyle=1;" vertex="1" parent="1"><mxGeometry x="100" y="50" width="1370" height="850" as="geometry"/></mxCell>
+        <mxCell id="dnsbox" value="DNS and TLS" style="swimlane;html=1;startSize=28;rounded=1;fillColor=#FFF9F0;strokeColor=#E89932;fontStyle=1;" vertex="1" parent="account"><mxGeometry x="30" y="60" width="1310" height="190" as="geometry"/></mxCell>
+        <mxCell id="gwbox" value="Amazon API Gateway" style="swimlane;html=1;startSize=28;rounded=1;fillColor=#F2F8FF;strokeColor=#527FFF;fontStyle=1;" vertex="1" parent="account"><mxGeometry x="30" y="290" width="1310" height="270" as="geometry"/></mxCell>
+        <mxCell id="runtime" value="Compute and observability" style="swimlane;html=1;startSize=28;rounded=1;fillColor=#F5FBF8;strokeColor=#3F8624;fontStyle=1;" vertex="1" parent="account"><mxGeometry x="30" y="600" width="1310" height="220" as="geometry"/></mxCell>
+
+        <mxCell id="client" value="Client" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#5B6B7A;fontStyle=1;" vertex="1" parent="1"><mxGeometry x="20" y="390" width="70" height="50" as="geometry"/></mxCell>
+        <mxCell id="r53" value="Amazon Route 53&#xa;Public hosted zone: buiz.click" style="shape=mxgraph.aws4.route_53;html=1;verticalLabelPosition=bottom;verticalAlign=top;align=center;" vertex="1" parent="dnsbox"><mxGeometry x="50" y="55" width="100" height="90" as="geometry"/></mxCell>
+        <mxCell id="acm" value="AWS Certificate Manager&#xa;greeter.buiz.click" style="shape=mxgraph.aws4.certificate_manager;html=1;verticalLabelPosition=bottom;verticalAlign=top;align=center;" vertex="1" parent="dnsbox"><mxGeometry x="400" y="55" width="100" height="90" as="geometry"/></mxCell>
+        <mxCell id="customdomain" value="API Gateway regional custom domain&#xa;greeter.buiz.click · TLS 1.2" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#527FFF;" vertex="1" parent="dnsbox"><mxGeometry x="850" y="55" width="260" height="70" as="geometry"/></mxCell>
+
+        <mxCell id="http" value="Amazon API Gateway&#xa;HTTP API · GET /greet&#xa;Auto-deploy stage" style="shape=mxgraph.aws4.api_gateway;html=1;verticalLabelPosition=bottom;verticalAlign=top;align=center;" vertex="1" parent="gwbox"><mxGeometry x="350" y="70" width="110" height="100" as="geometry"/></mxCell>
+        <mxCell id="rest" value="Amazon API Gateway&#xa;REST API · GET /greet&#xa;test stage" style="shape=mxgraph.aws4.api_gateway;html=1;verticalLabelPosition=bottom;verticalAlign=top;align=center;" vertex="1" parent="gwbox"><mxGeometry x="850" y="70" width="110" height="100" as="geometry"/></mxCell>
+        <mxCell id="lambda" value="AWS Lambda&#xa;Greeter · Node.js 20&#xa;greeter.handler" style="shape=mxgraph.aws4.lambda;html=1;verticalLabelPosition=bottom;verticalAlign=top;align=center;" vertex="1" parent="runtime"><mxGeometry x="550" y="65" width="110" height="100" as="geometry"/></mxCell>
+        <mxCell id="iam" value="AWS IAM&#xa;Execution role&#xa;AWSLambdaBasicExecutionRole" style="shape=mxgraph.aws4.iam;html=1;verticalLabelPosition=bottom;verticalAlign=top;align=center;" vertex="1" parent="runtime"><mxGeometry x="140" y="70" width="100" height="90" as="geometry"/></mxCell>
+        <mxCell id="cwapi" value="Amazon CloudWatch Logs&#xa;API access logs · 30 days" style="shape=mxgraph.aws4.cloudwatch;html=1;verticalLabelPosition=bottom;verticalAlign=top;align=center;" vertex="1" parent="runtime"><mxGeometry x="900" y="65" width="110" height="100" as="geometry"/></mxCell>
+        <mxCell id="cwlambda" value="Amazon CloudWatch Logs&#xa;Lambda logs · 30 days" style="shape=mxgraph.aws4.cloudwatch;html=1;verticalLabelPosition=bottom;verticalAlign=top;align=center;" vertex="1" parent="runtime"><mxGeometry x="1120" y="65" width="110" height="100" as="geometry"/></mxCell>
+
+        <mxCell id="e1" value="HTTPS /http-api/greet or /rest-api/greet" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;strokeColor=#232F3E;" edge="1" parent="1" source="client" target="customdomain"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="e2" value="DNS validation records" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;endArrow=open;dashed=1;strokeColor=#8796A5;" edge="1" parent="1" source="r53" target="acm"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="e3" value="TLS certificate" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;endArrow=block;strokeColor=#8796A5;" edge="1" parent="1" source="acm" target="customdomain"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="e4" value="A alias" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;endArrow=block;strokeColor=#8796A5;" edge="1" parent="1" source="r53" target="customdomain"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="e5" value="HTTP API mapping: http-api" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;endArrow=block;strokeColor=#527FFF;" edge="1" parent="1" source="customdomain" target="http"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="e6" value="REST base path mapping: rest-api" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;endArrow=block;strokeColor=#527FFF;" edge="1" parent="1" source="customdomain" target="rest"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="e7" value="AWS_PROXY integration" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;endArrow=block;strokeColor=#3F8624;" edge="1" parent="1" source="http" target="lambda"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="e8" value="AWS_PROXY integration" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;endArrow=block;strokeColor=#3F8624;" edge="1" parent="1" source="rest" target="lambda"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="e9" value="assumed by function" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;endArrow=open;dashed=1;strokeColor=#8796A5;" edge="1" parent="1" source="iam" target="lambda"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="e10" value="API access logs" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;endArrow=block;dashed=1;strokeColor=#8796A5;" edge="1" parent="1" source="http" target="cwapi"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="e11" value="function logs" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;endArrow=block;dashed=1;strokeColor=#8796A5;" edge="1" parent="1" source="lambda" target="cwlambda"><mxGeometry relative="1" as="geometry"/></mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

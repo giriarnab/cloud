@@ -1,5 +1,7 @@
 # AWS Resource creation using Terraform (Infrastructure as Code) 
 
+See the [AWS architecture diagram](ARCHITECTURE.drawio) (editable in diagrams.net).
+
 1. Create Policy, IAM, S3 
 2. Create a Lambda function 
 3. Create HTTP API Gateway
