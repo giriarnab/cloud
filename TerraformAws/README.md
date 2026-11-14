@@ -17,5 +17,9 @@ See the [AWS architecture diagram](ARCHITECTURE.drawio) (editable in diagrams.ne
    - Map the custom domain to your API Gateway stage for HTTP & Rest API .Test using below script from CLI
      - curl "$(terraform output -raw custom_domain_api_http_url)/greet?Name=Arnab"
      - curl "$(terraform output -raw custom_domain_api_rest_url)/greet?Name=Arnab"
+   - Disable direct access to APIGateway by setting below property of API Gateway
+     - disable_execute_api_endpoint = true
 
 ![img.png](img.png)
+
+![img_1.png](img_1.png)

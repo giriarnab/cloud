@@ -5,6 +5,7 @@ data "aws_partition" "current" {}
 # 1. Create the REST API container
 resource "aws_api_gateway_rest_api" "greeter_rest_api" {
   name        = "greeter-rest-api"
+  disable_execute_api_endpoint = true
   description = "A simple REST API managed by Terraform"
 }
 

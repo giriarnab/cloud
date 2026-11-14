@@ -1,6 +1,7 @@
 resource "aws_apigatewayv2_api" "greeter_http_api" {
   name          = "serverless_lambda_gw"
   protocol_type = "HTTP"
+  disable_execute_api_endpoint = true
   description = "A simple HTTP API managed by Terraform"
 }
 
