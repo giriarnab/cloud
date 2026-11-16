@@ -8,9 +8,9 @@ data "archive_file" "lambda_greeter" {
 resource "aws_lambda_function" "greeter" {
   function_name = "Greeter"
 
-  runtime = "nodejs20.x"
-  handler = "greeter.handler"
-  filename = data.archive_file.lambda_greeter.output_path
+  runtime          = "nodejs20.x"
+  handler          = "greeter.handler"
+  filename         = data.archive_file.lambda_greeter.output_path
   source_code_hash = data.archive_file.lambda_greeter.output_base64sha256
 
   role = aws_iam_role.lambda_exec.arn

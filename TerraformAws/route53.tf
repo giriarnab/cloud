@@ -17,7 +17,7 @@ resource "aws_acm_certificate" "api_cert" {
 # 3. Create DNS records to validate the ACM certificate
 resource "aws_route53_record" "cert_validation" {
   for_each = {
-      for dvo in aws_acm_certificate.api_cert.domain_validation_options : dvo.domain_name => {
+    for dvo in aws_acm_certificate.api_cert.domain_validation_options : dvo.domain_name => {
       name   = dvo.resource_record_name
       record = dvo.resource_record_value
       type   = dvo.resource_record_type
@@ -50,10 +50,10 @@ resource "aws_apigatewayv2_domain_name" "api_domain" {
 
 # 6. Map the custom domain to your HTTP API Gateway stage
 resource "aws_apigatewayv2_api_mapping" "http_api_mapping" {
-  api_id      = aws_apigatewayv2_api.greeter_http_api.id
+  api_id          = aws_apigatewayv2_api.greeter_http_api.id
   api_mapping_key = "http-api"
-  domain_name = aws_apigatewayv2_domain_name.api_domain.id
-  stage       = aws_apigatewayv2_stage.http_api_stage.id
+  domain_name     = aws_apigatewayv2_domain_name.api_domain.id
+  stage           = aws_apigatewayv2_stage.http_api_stage.id
 }
 
 # 6. Map the Custom Domain to your REST API Gateway Stage

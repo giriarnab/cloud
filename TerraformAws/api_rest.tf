@@ -4,9 +4,9 @@ data "aws_partition" "current" {}
 
 # 1. Create the REST API container
 resource "aws_api_gateway_rest_api" "greeter_rest_api" {
-  name        = "greeter-rest-api"
+  name                         = "greeter-rest-api"
   disable_execute_api_endpoint = true
-  description = "A simple REST API managed by Terraform"
+  description                  = "A simple REST API managed by Terraform"
 }
 
 # 2. Create a URL path resource (e.g., /greet)
@@ -18,9 +18,9 @@ resource "aws_api_gateway_resource" "hello_resource" {
 
 # 3. Define the HTTP Method (GET /greet)
 resource "aws_api_gateway_method" "get_hello" {
-  rest_api_id   = aws_api_gateway_rest_api.greeter_rest_api.id
-  resource_id   = aws_api_gateway_resource.hello_resource.id
-  http_method   = "GET"
+  rest_api_id = aws_api_gateway_rest_api.greeter_rest_api.id
+  resource_id = aws_api_gateway_resource.hello_resource.id
+  http_method = "GET"
   # authorization = "NONE"
   authorization = "COGNITO_USER_POOLS"
   authorizer_id = aws_api_gateway_authorizer.cognito_rest.id

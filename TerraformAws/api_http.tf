@@ -1,8 +1,8 @@
 resource "aws_apigatewayv2_api" "greeter_http_api" {
-  name          = "serverless_lambda_gw"
-  protocol_type = "HTTP"
+  name                         = "serverless_lambda_gw"
+  protocol_type                = "HTTP"
   disable_execute_api_endpoint = true
-  description = "A simple HTTP API managed by Terraform"
+  description                  = "A simple HTTP API managed by Terraform"
 }
 
 resource "aws_apigatewayv2_stage" "http_api_stage" {
@@ -41,10 +41,10 @@ resource "aws_apigatewayv2_integration" "greeter" {
 resource "aws_apigatewayv2_route" "greeter" {
   api_id = aws_apigatewayv2_api.greeter_http_api.id
 
-  route_key = "GET /greet"
-  target    = "integrations/${aws_apigatewayv2_integration.greeter.id}"
+  route_key          = "GET /greet"
+  target             = "integrations/${aws_apigatewayv2_integration.greeter.id}"
   authorization_type = "JWT"
-  authorizer_id = aws_apigatewayv2_authorizer.cognito_http.id
+  authorizer_id      = aws_apigatewayv2_authorizer.cognito_http.id
 }
 
 resource "aws_cloudwatch_log_group" "api_gw" {

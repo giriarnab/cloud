@@ -1,13 +1,17 @@
 variable "region" {
-  default = "us-east-2"
+  type        = string
+  default     = "us-east-2"
+  description = "Deployment Region"
 }
 
 variable "owner" {
-  default = "arnab"
+  type        = string
+  description = "Owner of the resources"
 }
 
 variable "env" {
-  default = "test"
+  type        = string
+  description = "Different staging environments"
 }
 
 
