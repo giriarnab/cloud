@@ -52,6 +52,13 @@ See the [AWS architecture diagram](ARCHITECTURE.drawio) (editable in diagrams.ne
      - Generate JWT Bearer token 
        - AccesssToken is used for HTTP API
        - IdToken is used for Rest API
+         ```bash
+         aws cognito-idp initiate-auth \
+           --client-id 5su70us5cj7t6kimttq8nijgtc \                
+           --auth-flow USER_PASSWORD_AUTH \
+           --auth-parameters USERNAME=<USER_NAME> ,PASSWORD=<NEW_PASSWORD>
+         ```
+
      - Use the JWT in the Authorization header:
        ```bash
        curl -H "Authorization: Bearer <YOUR_ID_TOKEN>" "$(terraform output -raw custom_domain_api_http_url)/greet?Name=Arnab"
