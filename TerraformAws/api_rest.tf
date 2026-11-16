@@ -21,20 +21,10 @@ resource "aws_api_gateway_method" "get_hello" {
   rest_api_id   = aws_api_gateway_rest_api.greeter_rest_api.id
   resource_id   = aws_api_gateway_resource.hello_resource.id
   http_method   = "GET"
-  authorization = "NONE"
+  # authorization = "NONE"
+  authorization = "COGNITO_USER_POOLS"
+  authorizer_id = aws_api_gateway_authorizer.cognito_rest.id
 }
-
-# 4. Configure the Backend Integration (Mock response for testing)
-# resource "aws_api_gateway_integration" "mock_integration" {
-#   rest_api_id = aws_api_gateway_rest_api.greeter_api.id
-#   resource_id = aws_api_gateway_resource.hello_resource.id
-#   http_method = aws_api_gateway_method.get_hello.http_method
-#   type        = "MOCK"
-#
-#   request_templates = {
-#     "application/json" = jsonencode({ statusCode = 200 })
-#   }
-# }
 
 # 4. Configure the Backend Integration with Lambda
 resource "aws_api_gateway_integration" "integration" {

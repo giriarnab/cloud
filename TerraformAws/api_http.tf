@@ -43,6 +43,8 @@ resource "aws_apigatewayv2_route" "greeter" {
 
   route_key = "GET /greet"
   target    = "integrations/${aws_apigatewayv2_integration.greeter.id}"
+  authorization_type = "JWT"
+  authorizer_id = aws_apigatewayv2_authorizer.cognito_http.id
 }
 
 resource "aws_cloudwatch_log_group" "api_gw" {

@@ -1,12 +1,10 @@
 output "function_name" {
   description = "Name of the Lambda function."
-
   value = aws_lambda_function.greeter.function_name
 }
 
 output "api_http_url" {
   description = "Base URL for API Gateway stage."
-
   value = aws_apigatewayv2_stage.http_api_stage.invoke_url
 }
 
@@ -20,4 +18,16 @@ output "custom_domain_api_http_url" {
 
 output "custom_domain_api_rest_url" {
   value = "https://${trimsuffix(aws_route53_record.api_dns.fqdn, ".")}/${aws_api_gateway_base_path_mapping.rest_api_mapping.base_path}"
+}
+
+output "cognito_user_pool" {
+  value = aws_cognito_user_pool.cognito_pool.id
+}
+
+output "cognito_user_pool_endpoint" {
+  value = "https://${aws_cognito_user_pool.cognito_pool.endpoint}"
+}
+
+output "cognito_app_client_id" {
+  value = aws_cognito_user_pool_client.app_client.id
 }
