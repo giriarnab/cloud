@@ -8,7 +8,7 @@ data "archive_file" "lambda_greeter" {
 resource "aws_lambda_function" "greeter" {
   function_name = "Greeter"
 
-  runtime          = "nodejs20.x"
+  runtime          = var.lambda_runtime_node
   handler          = "greeter.handler"
   filename         = data.archive_file.lambda_greeter.output_path
   source_code_hash = data.archive_file.lambda_greeter.output_base64sha256

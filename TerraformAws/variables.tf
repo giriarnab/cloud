@@ -14,4 +14,9 @@ variable "env" {
   description = "Different staging environments"
 }
 
+variable "lambda_runtime_node" {
+  type = string
+  description = "Node.js runtime for lambda"
+}
+
 
