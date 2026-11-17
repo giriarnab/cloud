@@ -45,7 +45,7 @@ resource "aws_iam_role" "lambda_exec" {
       Sid    = ""
       Principal = {
         Service = "lambda.amazonaws.com"
-      }
+        }
       }
     ]
   })
@@ -54,6 +54,39 @@ resource "aws_iam_role" "lambda_exec" {
 resource "aws_iam_role_policy_attachment" "lambda_policy" {
   role       = aws_iam_role.lambda_exec.name
   policy_arn = "arn:aws:iam::aws:policy/service-role/AWSLambdaBasicExecutionRole"
+}
+
+resource "aws_iam_role" "sqs_exec" {
+  name = "apigw-sqs-integration-role"
+
+  assume_role_policy = jsonencode({
+    Version = "2012-10-17"
+    Statement = [{
+      Action    = "sts:AssumeRole"
+      Effect    = "Allow"
+      Principal = {
+        Service = "apigateway.amazonaws.com"
+      }
+    }]
+  })
+}
+
+resource "aws_iam_policy" "apigw_sqs_send" {
+  name = "apigw-sqs-send-policy"
+
+  policy = jsonencode({
+    Version = "2012-10-17"
+    Statement = [{
+      Effect   = "Allow"
+      Action   = "sqs:SendMessage"
+      Resource = aws_sqs_queue.greet_queue.arn
+    }]
+  })
+}
+
+resource "aws_iam_role_policy_attachment" "apigw_sqs_attach" {
+  role       = aws_iam_role.sqs_exec.name
+  policy_arn = aws_iam_policy.apigw_sqs_send.arn
 }
 
 
