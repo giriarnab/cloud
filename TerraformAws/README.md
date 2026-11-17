@@ -69,4 +69,4 @@ See the [AWS architecture diagram](ARCHITECTURE.drawio) (editable in diagrams.ne
        curl -H "Authorization: Bearer <ID_TOKEN>" -X POST "$(terraform output -raw custom_domain_api_rest_url)/greet" -H "Content-Type: application/json" -d '{"user": "alice6", "message": "Hello world!"}'
        ```
 
-![img.png](img.png)
+The current architecture diagram, including the REST `POST /greet` to SQS flow, is in [ARCHITECTURE.drawio](ARCHITECTURE.drawio) and can be opened in diagrams.net.
