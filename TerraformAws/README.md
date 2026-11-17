@@ -54,9 +54,9 @@ See the [AWS architecture diagram](ARCHITECTURE.drawio) (editable in diagrams.ne
        - IdToken is used for Rest API
          ```bash
          aws cognito-idp initiate-auth \
-           --client-id 5su70us5cj7t6kimttq8nijgtc \                
-           --auth-flow USER_PASSWORD_AUTH \
-           --auth-parameters USERNAME=<USER_NAME> ,PASSWORD=<NEW_PASSWORD>
+         --client-id 5su70us5cj7t6kimttq8nijgtc \
+         --auth-flow USER_PASSWORD_AUTH \
+         --auth-parameters USERNAME=<USER_NAME>,PASSWORD=<PASSWORD>
          ```
 
      - Use the JWT in the Authorization header:
