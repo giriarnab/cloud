@@ -29,7 +29,8 @@ See the [AWS architecture diagram](ARCHITECTURE.drawio) (editable in diagrams.ne
      ```hcl
      disable_execute_api_endpoint = true
      ```
-6. Introduce authorization in API Gateway
+6. Create SQS and integrate with APIGateway (Rest API) POST method
+7. Introduce authorization in API Gateway
      - Create Cognito User Pool & App Client (allows password login for testing/apps)
      - Create Test User
        ```bash
@@ -61,7 +62,11 @@ See the [AWS architecture diagram](ARCHITECTURE.drawio) (editable in diagrams.ne
 
      - Use the JWT in the Authorization header:
        ```bash
-       curl -H "Authorization: Bearer <YOUR_ID_TOKEN>" "$(terraform output -raw custom_domain_api_http_url)/greet?Name=Arnab"
+       curl -H "Authorization: Bearer <ACCESS_TOKEN>" "$(terraform output -raw custom_domain_api_http_url)/greet?Name=Arnab"
+       ```
+     
+       ```bash
+       curl -H "Authorization: Bearer <ID_TOKEN>" -X POST "$(terraform output -raw custom_domain_api_rest_url)/greet" -H "Content-Type: application/json" -d '{"user": "alice6", "message": "Hello world!"}'
        ```
 
 ![img.png](img.png)
