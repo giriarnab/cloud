@@ -1,0 +1,256 @@
+<mxfile host="drawio-plugin" modified="2026-11-21T07:03:29.053Z" agent="Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/150.0.0.0 Safari/537.36" version="22.1.22" etag="vRJnU2M0jLWj1SWjaha_" type="embed">
+  <diagram id="ecs-fargate" name="AWS ECS Fargate Architecture">
+    <mxGraphModel dx="568" dy="352" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1500" pageHeight="950" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="account" value="AWS Cloud" style="swimlane;html=1;startSize=32;rounded=1;fillColor=#F7F9FC;strokeColor=#8796A5;fontStyle=1;fontColor=#232F3E;" parent="1" vertex="1">
+          <mxGeometry x="190" y="40" width="1260" height="830" as="geometry" />
+        </mxCell>
+        <mxCell id="region" value="AWS Region · us-east-2 (default)" style="swimlane;html=1;startSize=30;rounded=1;fillColor=#FFFFFF;strokeColor=#527FFF;fontStyle=1;fontColor=#232F3E;" parent="account" vertex="1">
+          <mxGeometry x="20" y="50" width="1220" height="750" as="geometry" />
+        </mxCell>
+        <mxCell id="vpc" value="Default VPC · discovered by Terraform" style="swimlane;html=1;startSize=30;rounded=1;fillColor=#F2F8FF;strokeColor=#527FFF;fontStyle=1;fontColor=#232F3E;" parent="region" vertex="1">
+          <mxGeometry x="30" y="65" width="1160" height="635" as="geometry" />
+        </mxCell>
+        <mxCell id="subnets" value="Default VPC subnets · task ENIs receive public IPs" style="swimlane;html=1;startSize=30;rounded=1;fillColor=#F5FBF8;strokeColor=#3F8624;fontStyle=1;fontColor=#232F3E;" parent="vpc" vertex="1">
+          <mxGeometry x="30" y="65" width="1090" height="490" as="geometry" />
+        </mxCell>
+        <mxCell id="cluster" value="Amazon ECS Cluster" style="shape=mxgraph.aws4.group;grIcon=mxgraph.aws4.group_ecs;strokeColor=#ED7100;fillColor=none;fontColor=#ED7100;fontStyle=1;verticalAlign=top;align=left;spacingLeft=34;html=1;" parent="subnets" vertex="1">
+          <mxGeometry x="230" y="45" width="770" height="390" as="geometry" />
+        </mxCell>
+        <mxCell id="ecs" value="Amazon ECS&#xa;Service · desired_count" style="shape=mxgraph.aws4.resourceIcon;resIcon=mxgraph.aws4.ecs;html=1;verticalLabelPosition=bottom;verticalAlign=top;align=center;fillColor=#D05C17;gradientColor=#F78E04;strokeColor=#FFFFFF;fontColor=#232F3E;" parent="cluster" vertex="1">
+          <mxGeometry x="40" y="95" width="120" height="105" as="geometry" />
+        </mxCell>
+        <mxCell id="fargate" value="AWS Fargate&#xa;Task(s) · awsvpc&#xa;CPU / memory from task definition" style="shape=mxgraph.aws4.resourceIcon;resIcon=mxgraph.aws4.fargate;html=1;verticalLabelPosition=bottom;verticalAlign=top;align=center;fillColor=#D05C17;gradientColor=#F78E04;strokeColor=#FFFFFF;fontColor=#232F3E;" parent="cluster" vertex="1">
+          <mxGeometry x="300" y="95" width="140" height="110" as="geometry" />
+        </mxCell>
+        <mxCell id="container" value="Application container&#xa;Configured image&#xa;TCP container_port" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#D05C17;fontColor=#232F3E;fontStyle=1;" parent="cluster" vertex="1">
+          <mxGeometry x="570" y="110" width="150" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="sg" value="Security group&#xa;TCP container_port from 0.0.0.0/0&#xa;All egress" style="shape=mxgraph.aws4.resourceIcon;resIcon=mxgraph.aws4.security_group;html=1;verticalLabelPosition=bottom;verticalAlign=top;align=center;fillColor=#C7131F;gradientColor=#F54749;strokeColor=#FFFFFF;fontColor=#232F3E;" parent="subnets" vertex="1">
+          <mxGeometry x="35" y="165" width="150" height="100" as="geometry" />
+        </mxCell>
+        <mxCell id="iam" value="AWS IAM&#xa;Task execution role&#xa;AmazonECSTaskExecutionRolePolicy" style="shape=mxgraph.aws4.resourceIcon;resIcon=mxgraph.aws4.identity_and_access_management;html=1;verticalLabelPosition=bottom;verticalAlign=top;align=center;fillColor=#C7131F;gradientColor=#F54749;strokeColor=#FFFFFF;fontColor=#232F3E;" parent="region" vertex="1">
+          <mxGeometry x="55" y="610" width="145" height="105" as="geometry" />
+        </mxCell>
+        <mxCell id="logs" value="Amazon CloudWatch Logs&#xa;/ecs/app_name&#xa;Retention: 7 days" style="shape=mxgraph.aws4.resourceIcon;resIcon=mxgraph.aws4.cloudwatch;html=1;verticalLabelPosition=bottom;verticalAlign=top;align=center;fillColor=#BC1356;gradientColor=#F34482;strokeColor=#FFFFFF;fontColor=#232F3E;" parent="region" vertex="1">
+          <mxGeometry x="650" y="610" width="140" height="105" as="geometry" />
+        </mxCell>
+        <mxCell id="client" value="Internet clients" style="shape=mxgraph.aws4.user;html=1;verticalLabelPosition=bottom;verticalAlign=top;align=center;fontColor=#232F3E;" parent="1" vertex="1">
+          <mxGeometry x="30" y="310" width="110" height="90" as="geometry" />
+        </mxCell>
+        <mxCell id="image" value="Container image&#xa;container_image&#xa;ECR or external registry" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFF9F0;strokeColor=#E89932;fontColor=#232F3E;fontStyle=1;" parent="1" vertex="1">
+          <mxGeometry x="30" y="610" width="130" height="75" as="geometry" />
+        </mxCell>
+        <mxCell id="e1" value="TCP container_port" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;endArrow=block;endSize=10;strokeWidth=3;strokeColor=#FF9900;fontStyle=1;fontColor=#232F3E;labelBackgroundColor=#FFFFFF;" parent="1" source="client" target="container" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="160" y="355" />
+              <mxPoint x="800" y="355" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e2" value="starts and maintains desired tasks" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;endArrow=block;strokeColor=#8796A5;fontColor=#232F3E;labelBackgroundColor=#FFFFFF;" parent="1" source="ecs" target="fargate" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e3" value="runs" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;endArrow=block;strokeColor=#8796A5;" parent="1" source="fargate" target="container" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e4" value="attached to task ENI" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;endArrow=open;dashed=1;strokeColor=#8796A5;fontColor=#232F3E;labelBackgroundColor=#FFFFFF;" parent="1" source="sg" target="fargate" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e5" value="assumed for image pull and log delivery" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;endArrow=open;dashed=1;strokeColor=#C7131F;fontColor=#232F3E;labelBackgroundColor=#FFFFFF;" parent="1" source="iam" target="fargate" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="310" y="760" />
+              <mxPoint x="530" y="760" />
+              <mxPoint x="530" y="340" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e6" value="awslogs driver" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;endArrow=block;dashed=1;strokeColor=#8796A5;fontColor=#232F3E;labelBackgroundColor=#FFFFFF;" parent="1" source="container" target="logs" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="940" y="340" />
+              <mxPoint x="940" y="760" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e7" value="pulled at task startup" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;endArrow=block;dashed=1;strokeColor=#E89932;fontColor=#232F3E;labelBackgroundColor=#FFFFFF;" parent="1" source="image" target="fargate" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="100" y="720" />
+              <mxPoint x="240" y="720" />
+              <mxPoint x="240" y="350" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="2" value="AWS Cloud" style="swimlane;html=1;startSize=32;rounded=1;fillColor=#F7F9FC;strokeColor=#8796A5;fontStyle=1;fontColor=#232F3E;" vertex="1" parent="1">
+          <mxGeometry x="190" y="40" width="1260" height="830" as="geometry" />
+        </mxCell>
+        <mxCell id="3" value="AWS Region · us-east-2 (default)" style="swimlane;html=1;startSize=30;rounded=1;fillColor=#FFFFFF;strokeColor=#527FFF;fontStyle=1;fontColor=#232F3E;" vertex="1" parent="2">
+          <mxGeometry x="20" y="50" width="1220" height="750" as="geometry" />
+        </mxCell>
+        <mxCell id="4" value="Default VPC · discovered by Terraform" style="swimlane;html=1;startSize=30;rounded=1;fillColor=#F2F8FF;strokeColor=#527FFF;fontStyle=1;fontColor=#232F3E;" vertex="1" parent="3">
+          <mxGeometry x="30" y="65" width="1160" height="635" as="geometry" />
+        </mxCell>
+        <mxCell id="5" value="Default VPC subnets · task ENIs receive public IPs" style="swimlane;html=1;startSize=30;rounded=1;fillColor=#F5FBF8;strokeColor=#3F8624;fontStyle=1;fontColor=#232F3E;" vertex="1" parent="4">
+          <mxGeometry x="30" y="65" width="1090" height="490" as="geometry" />
+        </mxCell>
+        <mxCell id="6" value="Amazon ECS Cluster" style="shape=mxgraph.aws4.group;grIcon=mxgraph.aws4.group_ecs;strokeColor=#ED7100;fillColor=none;fontColor=#ED7100;fontStyle=1;verticalAlign=top;align=left;spacingLeft=34;html=1;" vertex="1" parent="5">
+          <mxGeometry x="230" y="45" width="770" height="390" as="geometry" />
+        </mxCell>
+        <mxCell id="7" value="Amazon ECS&#xa;Service · desired_count" style="shape=mxgraph.aws4.resourceIcon;resIcon=mxgraph.aws4.ecs;html=1;verticalLabelPosition=bottom;verticalAlign=top;align=center;fillColor=#D05C17;gradientColor=#F78E04;strokeColor=#FFFFFF;fontColor=#232F3E;" vertex="1" parent="6">
+          <mxGeometry x="40" y="95" width="120" height="105" as="geometry" />
+        </mxCell>
+        <mxCell id="8" value="AWS Fargate&#xa;Task(s) · awsvpc&#xa;CPU / memory from task definition" style="shape=mxgraph.aws4.resourceIcon;resIcon=mxgraph.aws4.fargate;html=1;verticalLabelPosition=bottom;verticalAlign=top;align=center;fillColor=#D05C17;gradientColor=#F78E04;strokeColor=#FFFFFF;fontColor=#232F3E;" vertex="1" parent="6">
+          <mxGeometry x="300" y="95" width="140" height="110" as="geometry" />
+        </mxCell>
+        <mxCell id="9" value="Application container&#xa;Configured image&#xa;TCP container_port" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#D05C17;fontColor=#232F3E;fontStyle=1;" vertex="1" parent="6">
+          <mxGeometry x="570" y="110" width="150" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="10" value="Security group&#xa;TCP container_port from 0.0.0.0/0&#xa;All egress" style="shape=mxgraph.aws4.resourceIcon;resIcon=mxgraph.aws4.security_group;html=1;verticalLabelPosition=bottom;verticalAlign=top;align=center;fillColor=#C7131F;gradientColor=#F54749;strokeColor=#FFFFFF;fontColor=#232F3E;" vertex="1" parent="5">
+          <mxGeometry x="35" y="165" width="150" height="100" as="geometry" />
+        </mxCell>
+        <mxCell id="11" value="AWS IAM&#xa;Task execution role&#xa;AmazonECSTaskExecutionRolePolicy" style="shape=mxgraph.aws4.resourceIcon;resIcon=mxgraph.aws4.identity_and_access_management;html=1;verticalLabelPosition=bottom;verticalAlign=top;align=center;fillColor=#C7131F;gradientColor=#F54749;strokeColor=#FFFFFF;fontColor=#232F3E;" vertex="1" parent="3">
+          <mxGeometry x="55" y="610" width="145" height="105" as="geometry" />
+        </mxCell>
+        <mxCell id="12" value="Amazon CloudWatch Logs&#xa;/ecs/app_name&#xa;Retention: 7 days" style="shape=mxgraph.aws4.resourceIcon;resIcon=mxgraph.aws4.cloudwatch;html=1;verticalLabelPosition=bottom;verticalAlign=top;align=center;fillColor=#BC1356;gradientColor=#F34482;strokeColor=#FFFFFF;fontColor=#232F3E;" vertex="1" parent="3">
+          <mxGeometry x="650" y="610" width="140" height="105" as="geometry" />
+        </mxCell>
+        <mxCell id="13" value="Internet clients" style="shape=mxgraph.aws4.user;html=1;verticalLabelPosition=bottom;verticalAlign=top;align=center;fontColor=#232F3E;" vertex="1" parent="1">
+          <mxGeometry x="30" y="310" width="110" height="90" as="geometry" />
+        </mxCell>
+        <mxCell id="14" value="Container image&#xa;container_image&#xa;ECR or external registry" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFF9F0;strokeColor=#E89932;fontColor=#232F3E;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="30" y="610" width="130" height="75" as="geometry" />
+        </mxCell>
+        <mxCell id="15" value="TCP container_port" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;endArrow=block;endSize=10;strokeWidth=3;strokeColor=#FF9900;fontStyle=1;fontColor=#232F3E;labelBackgroundColor=#FFFFFF;" edge="1" parent="1" source="13" target="9">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="160" y="355" />
+              <mxPoint x="800" y="355" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="16" value="starts and maintains desired tasks" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;endArrow=block;strokeColor=#8796A5;fontColor=#232F3E;labelBackgroundColor=#FFFFFF;" edge="1" parent="1" source="7" target="8">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="17" value="runs" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;endArrow=block;strokeColor=#8796A5;" edge="1" parent="1" source="8" target="9">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="18" value="attached to task ENI" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;endArrow=open;dashed=1;strokeColor=#8796A5;fontColor=#232F3E;labelBackgroundColor=#FFFFFF;" edge="1" parent="1" source="10" target="8">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="19" value="assumed for image pull and log delivery" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;endArrow=open;dashed=1;strokeColor=#C7131F;fontColor=#232F3E;labelBackgroundColor=#FFFFFF;" edge="1" parent="1" source="11" target="8">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="310" y="760" />
+              <mxPoint x="530" y="760" />
+              <mxPoint x="530" y="340" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="20" value="awslogs driver" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;endArrow=block;dashed=1;strokeColor=#8796A5;fontColor=#232F3E;labelBackgroundColor=#FFFFFF;" edge="1" parent="1" source="9" target="12">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="940" y="340" />
+              <mxPoint x="940" y="760" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="21" value="pulled at task startup" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;endArrow=block;dashed=1;strokeColor=#E89932;fontColor=#232F3E;labelBackgroundColor=#FFFFFF;" edge="1" parent="1" source="14" target="8">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="100" y="720" />
+              <mxPoint x="240" y="720" />
+              <mxPoint x="240" y="350" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="22" value="AWS Cloud" style="swimlane;html=1;startSize=32;rounded=1;fillColor=#F7F9FC;strokeColor=#8796A5;fontStyle=1;fontColor=#232F3E;" vertex="1" parent="1">
+          <mxGeometry x="190" y="40" width="1260" height="830" as="geometry" />
+        </mxCell>
+        <mxCell id="23" value="AWS Region · us-east-2 (default)" style="swimlane;html=1;startSize=30;rounded=1;fillColor=#FFFFFF;strokeColor=#527FFF;fontStyle=1;fontColor=#232F3E;" vertex="1" parent="22">
+          <mxGeometry x="20" y="50" width="1220" height="750" as="geometry" />
+        </mxCell>
+        <mxCell id="24" value="Default VPC · discovered by Terraform" style="swimlane;html=1;startSize=30;rounded=1;fillColor=#F2F8FF;strokeColor=#527FFF;fontStyle=1;fontColor=#232F3E;" vertex="1" parent="23">
+          <mxGeometry x="30" y="65" width="1160" height="635" as="geometry" />
+        </mxCell>
+        <mxCell id="25" value="Default VPC subnets · task ENIs receive public IPs" style="swimlane;html=1;startSize=30;rounded=1;fillColor=#F5FBF8;strokeColor=#3F8624;fontStyle=1;fontColor=#232F3E;" vertex="1" parent="24">
+          <mxGeometry x="30" y="65" width="1090" height="490" as="geometry" />
+        </mxCell>
+        <mxCell id="26" value="Amazon ECS Cluster" style="shape=mxgraph.aws4.group;grIcon=mxgraph.aws4.group_ecs;strokeColor=#ED7100;fillColor=none;fontColor=#ED7100;fontStyle=1;verticalAlign=top;align=left;spacingLeft=34;html=1;" vertex="1" parent="25">
+          <mxGeometry x="230" y="45" width="770" height="390" as="geometry" />
+        </mxCell>
+        <mxCell id="27" value="Amazon ECS&#xa;Service · desired_count" style="shape=mxgraph.aws4.resourceIcon;resIcon=mxgraph.aws4.ecs;html=1;verticalLabelPosition=bottom;verticalAlign=top;align=center;fillColor=#D05C17;gradientColor=#F78E04;strokeColor=#FFFFFF;fontColor=#232F3E;" vertex="1" parent="26">
+          <mxGeometry x="40" y="95" width="120" height="105" as="geometry" />
+        </mxCell>
+        <mxCell id="28" value="AWS Fargate&#xa;Task(s) · awsvpc&#xa;CPU / memory from task definition" style="shape=mxgraph.aws4.resourceIcon;resIcon=mxgraph.aws4.fargate;html=1;verticalLabelPosition=bottom;verticalAlign=top;align=center;fillColor=#D05C17;gradientColor=#F78E04;strokeColor=#FFFFFF;fontColor=#232F3E;" vertex="1" parent="26">
+          <mxGeometry x="300" y="95" width="140" height="110" as="geometry" />
+        </mxCell>
+        <mxCell id="29" value="Application container&#xa;Configured image&#xa;TCP container_port" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#D05C17;fontColor=#232F3E;fontStyle=1;" vertex="1" parent="26">
+          <mxGeometry x="570" y="110" width="150" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="30" value="Security group&#xa;TCP container_port from 0.0.0.0/0&#xa;All egress" style="shape=mxgraph.aws4.resourceIcon;resIcon=mxgraph.aws4.security_group;html=1;verticalLabelPosition=bottom;verticalAlign=top;align=center;fillColor=#C7131F;gradientColor=#F54749;strokeColor=#FFFFFF;fontColor=#232F3E;" vertex="1" parent="25">
+          <mxGeometry x="35" y="165" width="150" height="100" as="geometry" />
+        </mxCell>
+        <mxCell id="31" value="AWS IAM&#xa;Task execution role&#xa;AmazonECSTaskExecutionRolePolicy" style="shape=mxgraph.aws4.resourceIcon;resIcon=mxgraph.aws4.identity_and_access_management;html=1;verticalLabelPosition=bottom;verticalAlign=top;align=center;fillColor=#C7131F;gradientColor=#F54749;strokeColor=#FFFFFF;fontColor=#232F3E;" vertex="1" parent="23">
+          <mxGeometry x="55" y="610" width="145" height="105" as="geometry" />
+        </mxCell>
+        <mxCell id="32" value="Amazon CloudWatch Logs&#xa;/ecs/app_name&#xa;Retention: 7 days" style="shape=mxgraph.aws4.resourceIcon;resIcon=mxgraph.aws4.cloudwatch;html=1;verticalLabelPosition=bottom;verticalAlign=top;align=center;fillColor=#BC1356;gradientColor=#F34482;strokeColor=#FFFFFF;fontColor=#232F3E;" vertex="1" parent="23">
+          <mxGeometry x="650" y="610" width="140" height="105" as="geometry" />
+        </mxCell>
+        <mxCell id="33" value="Internet clients" style="shape=mxgraph.aws4.user;html=1;verticalLabelPosition=bottom;verticalAlign=top;align=center;fontColor=#232F3E;" vertex="1" parent="1">
+          <mxGeometry x="30" y="310" width="110" height="90" as="geometry" />
+        </mxCell>
+        <mxCell id="34" value="Container image&#xa;container_image&#xa;ECR or external registry" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFF9F0;strokeColor=#E89932;fontColor=#232F3E;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="30" y="610" width="130" height="75" as="geometry" />
+        </mxCell>
+        <mxCell id="35" value="TCP container_port" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;endArrow=block;endSize=10;strokeWidth=3;strokeColor=#FF9900;fontStyle=1;fontColor=#232F3E;labelBackgroundColor=#FFFFFF;" edge="1" parent="1" source="33" target="29">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="160" y="355" />
+              <mxPoint x="800" y="355" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="36" value="starts and maintains desired tasks" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;endArrow=block;strokeColor=#8796A5;fontColor=#232F3E;labelBackgroundColor=#FFFFFF;" edge="1" parent="1" source="27" target="28">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="37" value="runs" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;endArrow=block;strokeColor=#8796A5;" edge="1" parent="1" source="28" target="29">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="38" value="attached to task ENI" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;endArrow=open;dashed=1;strokeColor=#8796A5;fontColor=#232F3E;labelBackgroundColor=#FFFFFF;" edge="1" parent="1" source="30" target="28">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="39" value="assumed for image pull and log delivery" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;endArrow=open;dashed=1;strokeColor=#C7131F;fontColor=#232F3E;labelBackgroundColor=#FFFFFF;" edge="1" parent="1" source="31" target="28">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="310" y="760" />
+              <mxPoint x="530" y="760" />
+              <mxPoint x="530" y="340" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="40" value="awslogs driver" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;endArrow=block;dashed=1;strokeColor=#8796A5;fontColor=#232F3E;labelBackgroundColor=#FFFFFF;" edge="1" parent="1" source="29" target="32">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="940" y="340" />
+              <mxPoint x="940" y="760" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="41" value="pulled at task startup" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;endArrow=block;dashed=1;strokeColor=#E89932;fontColor=#232F3E;labelBackgroundColor=#FFFFFF;" edge="1" parent="1" source="34" target="28">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="100" y="720" />
+              <mxPoint x="240" y="720" />
+              <mxPoint x="240" y="350" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

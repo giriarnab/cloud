@@ -1,0 +1,7 @@
+region              = "us-east-2"
+env                 = "test"
+owner               = "arnab"
+lambda_runtime_node = "nodejs24.x"
+app_name            = "simple_name_form"
+container_image     = "giriarnab/simple_form:v1"
+container_port      = "3000"
