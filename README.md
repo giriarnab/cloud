@@ -2,11 +2,13 @@
 
 ## API Gateway (HTTP, REST) , Custom DNS, Route53, SQS Implementation using Terraform
 
-See the [TerraformAws architecture diagram](TerraformAws/img.png) (editable in diagrams.net), or read the [TerraformAws setup guide](TerraformAws/README.md).
+See the (TerraformAws/README.md) for more details.
 
 ../TerraformAws/![img.png](img.png)
 
 
 ## AWS ECS Fargate Implementation using Terraform 
+
+See the (AWS_ECS_Terraform/README.md) for more details.
 
 ../AWS_ECS_Terraform/![img.png](img.png)
