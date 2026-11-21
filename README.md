@@ -1,4 +1,4 @@
-# cloud
+# Cloud Implemtations
 
 ## API Gateway (HTTP, REST) , Custom DNS, Route53, SQS Implementation using Terraform
 
