@@ -11,4 +11,6 @@ See the (TerraformAws/README.md) for more details.
 
 See the (AWS_ECS_Terraform/README.md) for more details.
 
-![img.png](../AWS_ECS_Terraform/img.png)
+![img.png](AWS_ECS_Terraform/img.png)
+
+AWS_ECS_Terraform/img.png
