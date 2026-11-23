@@ -1,40 +1,251 @@
-<mxfile host="app.diagrams.net" modified="2026-11-23T00:00:00.000Z" agent="Codex" version="24.7.17" type="device">
+<mxfile host="drawio-plugin" modified="2026-11-23T07:48:47.826Z" agent="Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/150.0.0.0 Safari/537.36" version="22.1.22" etag="grnSoFAqrKXDJ3rKenQh" type="embed">
   <diagram id="ecs-fargate" name="AWS ECS Fargate Architecture">
-    <mxGraphModel dx="1500" dy="980" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1550" pageHeight="1000" math="0" shadow="0">
+    <mxGraphModel dx="568" dy="280" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1550" pageHeight="1000" math="0" shadow="0">
       <root>
-        <mxCell id="0"/><mxCell id="1" parent="0"/>
-        <mxCell id="account" value="AWS Cloud" style="swimlane;html=1;startSize=32;rounded=1;fillColor=#F7F9FC;strokeColor=#8796A5;fontStyle=1;fontColor=#232F3E;" vertex="1" parent="1"><mxGeometry x="150" y="30" width="1360" height="920" as="geometry"/></mxCell>
-        <mxCell id="region" value="AWS Region · us-east-2" style="swimlane;html=1;startSize=30;rounded=1;fillColor=#FFFFFF;strokeColor=#527FFF;fontStyle=1;fontColor=#232F3E;" vertex="1" parent="account"><mxGeometry x="20" y="45" width="1320" height="850" as="geometry"/></mxCell>
-        <mxCell id="vpc" value="Default VPC · discovered by Terraform" style="swimlane;html=1;startSize=30;rounded=1;fillColor=#F2F8FF;strokeColor=#527FFF;fontStyle=1;fontColor=#232F3E;" vertex="1" parent="region"><mxGeometry x="310" y="135" width="970" height="650" as="geometry"/></mxCell>
-        <mxCell id="subnets" value="Default VPC subnets · Fargate tasks receive public IPs" style="swimlane;html=1;startSize=30;rounded=1;fillColor=#F5FBF8;strokeColor=#3F8624;fontStyle=1;fontColor=#232F3E;" vertex="1" parent="vpc"><mxGeometry x="30" y="70" width="910" height="485" as="geometry"/></mxCell>
-        <mxCell id="cluster" value="Amazon ECS Cluster" style="shape=mxgraph.aws4.group;grIcon=mxgraph.aws4.group_ecs;strokeColor=#ED7100;fillColor=none;fontColor=#ED7100;fontStyle=1;verticalAlign=top;align=left;spacingLeft=34;html=1;" vertex="1" parent="subnets"><mxGeometry x="220" y="50" width="660" height="375" as="geometry"/></mxCell>
-
-        <mxCell id="client" value="Client" style="shape=mxgraph.aws4.user;html=1;verticalLabelPosition=bottom;verticalAlign=top;align=center;fontColor=#232F3E;" vertex="1" parent="1"><mxGeometry x="25" y="335" width="90" height="80" as="geometry"/></mxCell>
-        <mxCell id="domain" value="Custom domain&#xa;greeter.buiz.click" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFF9F0;strokeColor=#E89932;fontColor=#232F3E;fontStyle=1;" vertex="1" parent="region"><mxGeometry x="35" y="115" width="145" height="65" as="geometry"/></mxCell>
-        <mxCell id="apigw" value="Amazon API Gateway&#xa;HTTP API · ANY / and /{proxy+}&#xa;$default stage · auto deploy" style="shape=mxgraph.aws4.resourceIcon;resIcon=mxgraph.aws4.api_gateway;html=1;verticalLabelPosition=bottom;verticalAlign=top;align=center;fillColor=#5A30B5;gradientColor=#945DF2;strokeColor=#FFFFFF;fontColor=#232F3E;" vertex="1" parent="region"><mxGeometry x="40" y="285" width="170" height="125" as="geometry"/></mxCell>
-        <mxCell id="apilogs" value="Amazon CloudWatch Logs&#xa;API access logs · 30 days" style="shape=mxgraph.aws4.resourceIcon;resIcon=mxgraph.aws4.cloudwatch;html=1;verticalLabelPosition=bottom;verticalAlign=top;align=center;fillColor=#BC1356;gradientColor=#F34482;strokeColor=#FFFFFF;fontColor=#232F3E;" vertex="1" parent="region"><mxGeometry x="45" y="590" width="150" height="110" as="geometry"/></mxCell>
-        <mxCell id="vpc_link" value="API Gateway VPC Link&#xa;ecs-vpc-link" style="shape=mxgraph.aws4.resourceIcon;resIcon=mxgraph.aws4.api_gateway;html=1;verticalLabelPosition=bottom;verticalAlign=top;align=center;fillColor=#5A30B5;gradientColor=#945DF2;strokeColor=#FFFFFF;fontColor=#232F3E;" vertex="1" parent="vpc"><mxGeometry x="45" y="90" width="145" height="105" as="geometry"/></mxCell>
-        <mxCell id="sg_link" value="VPC Link security group&#xa;All egress" style="shape=mxgraph.aws4.resourceIcon;resIcon=mxgraph.aws4.security_group;html=1;verticalLabelPosition=bottom;verticalAlign=top;align=center;fillColor=#C7131F;gradientColor=#F54749;strokeColor=#FFFFFF;fontColor=#232F3E;" vertex="1" parent="vpc"><mxGeometry x="55" y="400" width="130" height="95" as="geometry"/></mxCell>
-        <mxCell id="sg_task" value="Task security group&#xa;TCP 3000 from VPC Link SG&#xa;All egress" style="shape=mxgraph.aws4.resourceIcon;resIcon=mxgraph.aws4.security_group;html=1;verticalLabelPosition=bottom;verticalAlign=top;align=center;fillColor=#C7131F;gradientColor=#F54749;strokeColor=#FFFFFF;fontColor=#232F3E;" vertex="1" parent="subnets"><mxGeometry x="20" y="165" width="155" height="110" as="geometry"/></mxCell>
-        <mxCell id="ecs" value="Amazon ECS&#xa;Service · desired_count" style="shape=mxgraph.aws4.resourceIcon;resIcon=mxgraph.aws4.ecs;html=1;verticalLabelPosition=bottom;verticalAlign=top;align=center;fillColor=#D05C17;gradientColor=#F78E04;strokeColor=#FFFFFF;fontColor=#232F3E;" vertex="1" parent="cluster"><mxGeometry x="35" y="95" width="125" height="105" as="geometry"/></mxCell>
-        <mxCell id="fargate" value="AWS Fargate&#xa;Task(s) · awsvpc · ARM64&#xa;256 CPU units · 512 MiB" style="shape=mxgraph.aws4.resourceIcon;resIcon=mxgraph.aws4.fargate;html=1;verticalLabelPosition=bottom;verticalAlign=top;align=center;fillColor=#D05C17;gradientColor=#F78E04;strokeColor=#FFFFFF;fontColor=#232F3E;" vertex="1" parent="cluster"><mxGeometry x="285" y="95" width="145" height="110" as="geometry"/></mxCell>
-        <mxCell id="container" value="simple_name_form&#xa;giriarnab/simple_form:v1&#xa;TCP 3000" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#D05C17;fontColor=#232F3E;fontStyle=1;" vertex="1" parent="cluster"><mxGeometry x="500" y="110" width="140" height="80" as="geometry"/></mxCell>
-        <mxCell id="cloudmap" value="AWS Cloud Map&#xa;Private DNS namespace: ecs.internal&#xa;Service discovery · SRV · TTL 10s" style="shape=mxgraph.aws4.resourceIcon;resIcon=mxgraph.aws4.cloud_map;html=1;verticalLabelPosition=bottom;verticalAlign=top;align=center;fillColor=#5A30B5;gradientColor=#945DF2;strokeColor=#FFFFFF;fontColor=#232F3E;" vertex="1" parent="vpc"><mxGeometry x="580" y="445" width="205" height="115" as="geometry"/></mxCell>
-        <mxCell id="iam" value="AWS IAM&#xa;Task execution role&#xa;AmazonECSTaskExecutionRolePolicy" style="shape=mxgraph.aws4.resourceIcon;resIcon=mxgraph.aws4.identity_and_access_management;html=1;verticalLabelPosition=bottom;verticalAlign=top;align=center;fillColor=#C7131F;gradientColor=#F54749;strokeColor=#FFFFFF;fontColor=#232F3E;" vertex="1" parent="region"><mxGeometry x="390" y="745" width="170" height="110" as="geometry"/></mxCell>
-        <mxCell id="tasklogs" value="Amazon CloudWatch Logs&#xa;Container logs · 7 days" style="shape=mxgraph.aws4.resourceIcon;resIcon=mxgraph.aws4.cloudwatch;html=1;verticalLabelPosition=bottom;verticalAlign=top;align=center;fillColor=#BC1356;gradientColor=#F34482;strokeColor=#FFFFFF;fontColor=#232F3E;" vertex="1" parent="region"><mxGeometry x="850" y="745" width="150" height="110" as="geometry"/></mxCell>
-
-        <mxCell id="e1" value="HTTPS · API endpoint via custom domain" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;endArrow=block;endSize=10;strokeWidth=3;strokeColor=#FF9900;fontStyle=1;fontColor=#232F3E;labelBackgroundColor=#FFFFFF;" edge="1" parent="1" source="client" target="domain"><mxGeometry relative="1" as="geometry"/></mxCell>
-        <mxCell id="e2" value="API mapping · $default stage" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;endArrow=block;strokeWidth=2;strokeColor=#FF9900;fontColor=#232F3E;labelBackgroundColor=#FFFFFF;" edge="1" parent="1" source="domain" target="apigw"><mxGeometry relative="1" as="geometry"/></mxCell>
-        <mxCell id="e3" value="HTTP_PROXY · ANY routes" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;endArrow=block;strokeWidth=3;strokeColor=#FF9900;fontColor=#232F3E;labelBackgroundColor=#FFFFFF;" edge="1" parent="1" source="apigw" target="vpc_link"><mxGeometry relative="1" as="geometry"><Array as="points"><mxPoint x="420" y="395"/><mxPoint x="420" y="450"/></Array></mxGeometry></mxCell>
-        <mxCell id="e4" value="VPC Link ENIs · selected subnets" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;endArrow=block;strokeColor=#8796A5;fontColor=#232F3E;labelBackgroundColor=#FFFFFF;" edge="1" parent="1" source="vpc_link" target="sg_link"><mxGeometry relative="1" as="geometry"/></mxCell>
-        <mxCell id="e5" value="ingress allows TCP 3000 from this SG" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;endArrow=open;dashed=1;strokeColor=#C7131F;fontColor=#232F3E;labelBackgroundColor=#FFFFFF;" edge="1" parent="1" source="sg_link" target="sg_task"><mxGeometry relative="1" as="geometry"><Array as="points"><mxPoint x="460" y="610"/><mxPoint x="290" y="610"/></Array></mxGeometry></mxCell>
-        <mxCell id="e6" value="target registered by ECS service" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;endArrow=block;dashed=1;strokeColor=#8796A5;fontColor=#232F3E;labelBackgroundColor=#FFFFFF;" edge="1" parent="1" source="fargate" target="cloudmap"><mxGeometry relative="1" as="geometry"><Array as="points"><mxPoint x="860" y="440"/><mxPoint x="860" y="665"/></Array></mxGeometry></mxCell>
-        <mxCell id="e7" value="private DNS SRV integration target" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;endArrow=block;strokeColor=#FF9900;fontColor=#232F3E;labelBackgroundColor=#FFFFFF;" edge="1" parent="1" source="vpc_link" target="cloudmap"><mxGeometry relative="1" as="geometry"><Array as="points"><mxPoint x="485" y="490"/><mxPoint x="485" y="700"/><mxPoint x="910" y="700"/></Array></mxGeometry></mxCell>
-        <mxCell id="e8" value="ECS service runs tasks" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;endArrow=block;strokeColor=#8796A5;fontColor=#232F3E;" edge="1" parent="1" source="ecs" target="fargate"><mxGeometry relative="1" as="geometry"/></mxCell>
-        <mxCell id="e9" value="runs" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;endArrow=block;strokeColor=#8796A5;" edge="1" parent="1" source="fargate" target="container"><mxGeometry relative="1" as="geometry"/></mxCell>
-        <mxCell id="e10" value="awslogs driver" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;endArrow=block;dashed=1;strokeColor=#8796A5;fontColor=#232F3E;labelBackgroundColor=#FFFFFF;" edge="1" parent="1" source="container" target="tasklogs"><mxGeometry relative="1" as="geometry"><Array as="points"><mxPoint x="1000" y="495"/><mxPoint x="1000" y="790"/></Array></mxGeometry></mxCell>
-        <mxCell id="e11" value="API access logs · 30-day retention" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;endArrow=block;dashed=1;strokeColor=#8796A5;fontColor=#232F3E;labelBackgroundColor=#FFFFFF;" edge="1" parent="1" source="apigw" target="apilogs"><mxGeometry relative="1" as="geometry"/></mxCell>
-        <mxCell id="e12" value="assumed by Fargate for image pull and log delivery" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;endArrow=open;dashed=1;strokeColor=#C7131F;fontColor=#232F3E;labelBackgroundColor=#FFFFFF;" edge="1" parent="1" source="iam" target="fargate"><mxGeometry relative="1" as="geometry"><Array as="points"><mxPoint x="610" y="905"/><mxPoint x="610" y="535"/></Array></mxGeometry></mxCell>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="account" value="AWS Cloud" style="swimlane;html=1;startSize=32;rounded=1;fillColor=#F7F9FC;strokeColor=#8796A5;fontStyle=1;fontColor=#232F3E;" parent="1" vertex="1">
+          <mxGeometry x="150" y="30" width="1360" height="920" as="geometry" />
+        </mxCell>
+        <mxCell id="region" value="AWS Region · us-east-2" style="swimlane;html=1;startSize=30;rounded=1;fillColor=#FFFFFF;strokeColor=#527FFF;fontStyle=1;fontColor=#232F3E;" parent="account" vertex="1">
+          <mxGeometry x="20" y="45" width="1320" height="850" as="geometry" />
+        </mxCell>
+        <mxCell id="vpc" value="Default VPC · discovered by Terraform" style="swimlane;html=1;startSize=30;rounded=1;fillColor=#F2F8FF;strokeColor=#527FFF;fontStyle=1;fontColor=#232F3E;" parent="region" vertex="1">
+          <mxGeometry x="310" y="135" width="970" height="650" as="geometry" />
+        </mxCell>
+        <mxCell id="subnets" value="Default VPC subnets · Fargate tasks receive public IPs" style="swimlane;html=1;startSize=30;rounded=1;fillColor=#F5FBF8;strokeColor=#3F8624;fontStyle=1;fontColor=#232F3E;" parent="vpc" vertex="1">
+          <mxGeometry x="30" y="70" width="910" height="485" as="geometry" />
+        </mxCell>
+        <mxCell id="cluster" value="Amazon ECS Cluster" style="shape=mxgraph.aws4.group;grIcon=mxgraph.aws4.group_ecs;strokeColor=#ED7100;fillColor=none;fontColor=#ED7100;fontStyle=1;verticalAlign=top;align=left;spacingLeft=34;html=1;" parent="subnets" vertex="1">
+          <mxGeometry x="220" y="50" width="660" height="375" as="geometry" />
+        </mxCell>
+        <mxCell id="ecs" value="Amazon ECS&#xa;Service · desired_count" style="shape=mxgraph.aws4.resourceIcon;resIcon=mxgraph.aws4.ecs;html=1;verticalLabelPosition=bottom;verticalAlign=top;align=center;fillColor=#D05C17;gradientColor=#F78E04;strokeColor=#FFFFFF;fontColor=#232F3E;" parent="cluster" vertex="1">
+          <mxGeometry x="35" y="95" width="125" height="105" as="geometry" />
+        </mxCell>
+        <mxCell id="fargate" value="AWS Fargate&#xa;Task(s) · awsvpc · ARM64&#xa;256 CPU units · 512 MiB" style="shape=mxgraph.aws4.resourceIcon;resIcon=mxgraph.aws4.fargate;html=1;verticalLabelPosition=bottom;verticalAlign=top;align=center;fillColor=#D05C17;gradientColor=#F78E04;strokeColor=#FFFFFF;fontColor=#232F3E;" parent="cluster" vertex="1">
+          <mxGeometry x="285" y="95" width="145" height="110" as="geometry" />
+        </mxCell>
+        <mxCell id="container" value="simple_name_form&#xa;giriarnab/simple_form:v1&#xa;TCP 3000" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#D05C17;fontColor=#232F3E;fontStyle=1;" parent="cluster" vertex="1">
+          <mxGeometry x="500" y="110" width="140" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="sg_task" value="Task security group&#xa;TCP 3000 from VPC Link SG&#xa;All egress" style="shape=mxgraph.aws4.resourceIcon;resIcon=mxgraph.aws4.security_group;html=1;verticalLabelPosition=bottom;verticalAlign=top;align=center;fillColor=#C7131F;gradientColor=#F54749;strokeColor=#FFFFFF;fontColor=#232F3E;" parent="subnets" vertex="1">
+          <mxGeometry x="20" y="165" width="155" height="110" as="geometry" />
+        </mxCell>
+        <mxCell id="vpc_link" value="API Gateway VPC Link&#xa;ecs-vpc-link" style="shape=mxgraph.aws4.resourceIcon;resIcon=mxgraph.aws4.api_gateway;html=1;verticalLabelPosition=bottom;verticalAlign=top;align=center;fillColor=#5A30B5;gradientColor=#945DF2;strokeColor=#FFFFFF;fontColor=#232F3E;" parent="vpc" vertex="1">
+          <mxGeometry x="45" y="90" width="145" height="105" as="geometry" />
+        </mxCell>
+        <mxCell id="sg_link" value="VPC Link security group&#xa;All egress" style="shape=mxgraph.aws4.resourceIcon;resIcon=mxgraph.aws4.security_group;html=1;verticalLabelPosition=bottom;verticalAlign=top;align=center;fillColor=#C7131F;gradientColor=#F54749;strokeColor=#FFFFFF;fontColor=#232F3E;" parent="vpc" vertex="1">
+          <mxGeometry x="55" y="400" width="130" height="95" as="geometry" />
+        </mxCell>
+        <mxCell id="cloudmap" value="AWS Cloud Map&#xa;Private DNS namespace: ecs.internal&#xa;Service discovery · SRV · TTL 10s" style="shape=mxgraph.aws4.resourceIcon;resIcon=mxgraph.aws4.cloud_map;html=1;verticalLabelPosition=bottom;verticalAlign=top;align=center;fillColor=#5A30B5;gradientColor=#945DF2;strokeColor=#FFFFFF;fontColor=#232F3E;" parent="vpc" vertex="1">
+          <mxGeometry x="580" y="445" width="205" height="115" as="geometry" />
+        </mxCell>
+        <mxCell id="domain" value="Custom domain&#xa;greeter.buiz.click" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFF9F0;strokeColor=#E89932;fontColor=#232F3E;fontStyle=1;" parent="region" vertex="1">
+          <mxGeometry x="35" y="115" width="145" height="65" as="geometry" />
+        </mxCell>
+        <mxCell id="apigw" value="Amazon API Gateway&#xa;HTTP API · ANY / and /{proxy+}&#xa;$default stage · auto deploy" style="shape=mxgraph.aws4.resourceIcon;resIcon=mxgraph.aws4.api_gateway;html=1;verticalLabelPosition=bottom;verticalAlign=top;align=center;fillColor=#5A30B5;gradientColor=#945DF2;strokeColor=#FFFFFF;fontColor=#232F3E;" parent="region" vertex="1">
+          <mxGeometry x="40" y="285" width="170" height="125" as="geometry" />
+        </mxCell>
+        <mxCell id="apilogs" value="Amazon CloudWatch Logs&#xa;API access logs · 30 days" style="shape=mxgraph.aws4.resourceIcon;resIcon=mxgraph.aws4.cloudwatch;html=1;verticalLabelPosition=bottom;verticalAlign=top;align=center;fillColor=#BC1356;gradientColor=#F34482;strokeColor=#FFFFFF;fontColor=#232F3E;" parent="region" vertex="1">
+          <mxGeometry x="45" y="590" width="150" height="110" as="geometry" />
+        </mxCell>
+        <mxCell id="iam" value="AWS IAM&#xa;Task execution role&#xa;AmazonECSTaskExecutionRolePolicy" style="shape=mxgraph.aws4.resourceIcon;resIcon=mxgraph.aws4.identity_and_access_management;html=1;verticalLabelPosition=bottom;verticalAlign=top;align=center;fillColor=#C7131F;gradientColor=#F54749;strokeColor=#FFFFFF;fontColor=#232F3E;" parent="region" vertex="1">
+          <mxGeometry x="390" y="745" width="170" height="110" as="geometry" />
+        </mxCell>
+        <mxCell id="tasklogs" value="Amazon CloudWatch Logs&#xa;Container logs · 7 days" style="shape=mxgraph.aws4.resourceIcon;resIcon=mxgraph.aws4.cloudwatch;html=1;verticalLabelPosition=bottom;verticalAlign=top;align=center;fillColor=#BC1356;gradientColor=#F34482;strokeColor=#FFFFFF;fontColor=#232F3E;" parent="region" vertex="1">
+          <mxGeometry x="850" y="745" width="150" height="110" as="geometry" />
+        </mxCell>
+        <mxCell id="client" value="Client" style="shape=mxgraph.aws4.user;html=1;verticalLabelPosition=bottom;verticalAlign=top;align=center;fontColor=#232F3E;" parent="1" vertex="1">
+          <mxGeometry x="25" y="335" width="90" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="e1" value="HTTPS · API endpoint via custom domain" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;endArrow=block;endSize=10;strokeWidth=3;strokeColor=#FF9900;fontStyle=1;fontColor=#232F3E;labelBackgroundColor=#FFFFFF;" parent="1" source="client" target="domain" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e2" value="API mapping · $default stage" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;endArrow=block;strokeWidth=2;strokeColor=#FF9900;fontColor=#232F3E;labelBackgroundColor=#FFFFFF;" parent="1" source="domain" target="apigw" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e3" value="HTTP_PROXY · ANY routes" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;endArrow=block;strokeWidth=3;strokeColor=#FF9900;fontColor=#232F3E;labelBackgroundColor=#FFFFFF;" parent="1" source="apigw" target="vpc_link" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="420" y="395" />
+              <mxPoint x="420" y="450" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e4" value="VPC Link ENIs · selected subnets" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;endArrow=block;strokeColor=#8796A5;fontColor=#232F3E;labelBackgroundColor=#FFFFFF;" parent="1" source="vpc_link" target="sg_link" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e5" value="ingress allows TCP 3000 from this SG" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;endArrow=open;dashed=1;strokeColor=#C7131F;fontColor=#232F3E;labelBackgroundColor=#FFFFFF;" parent="1" source="sg_link" target="sg_task" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="460" y="610" />
+              <mxPoint x="290" y="610" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e6" value="target registered by ECS service" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;endArrow=block;dashed=1;strokeColor=#8796A5;fontColor=#232F3E;labelBackgroundColor=#FFFFFF;" parent="1" source="fargate" target="cloudmap" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="860" y="440" />
+              <mxPoint x="860" y="665" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e7" value="private DNS SRV integration target" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;endArrow=block;strokeColor=#FF9900;fontColor=#232F3E;labelBackgroundColor=#FFFFFF;" parent="1" source="vpc_link" target="cloudmap" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="485" y="490" />
+              <mxPoint x="485" y="700" />
+              <mxPoint x="910" y="700" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e8" value="ECS service runs tasks" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;endArrow=block;strokeColor=#8796A5;fontColor=#232F3E;" parent="1" source="ecs" target="fargate" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e9" value="runs" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;endArrow=block;strokeColor=#8796A5;" parent="1" source="fargate" target="container" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e10" value="awslogs driver" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;endArrow=block;dashed=1;strokeColor=#8796A5;fontColor=#232F3E;labelBackgroundColor=#FFFFFF;" parent="1" source="container" target="tasklogs" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="1000" y="495" />
+              <mxPoint x="1000" y="790" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e11" value="API access logs · 30-day retention" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;endArrow=block;dashed=1;strokeColor=#8796A5;fontColor=#232F3E;labelBackgroundColor=#FFFFFF;" parent="1" source="apigw" target="apilogs" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e12" value="assumed by Fargate for image pull and log delivery" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;endArrow=open;dashed=1;strokeColor=#C7131F;fontColor=#232F3E;labelBackgroundColor=#FFFFFF;" parent="1" source="iam" target="fargate" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="610" y="905" />
+              <mxPoint x="610" y="535" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="2" value="AWS Cloud" style="swimlane;html=1;startSize=32;rounded=1;fillColor=#F7F9FC;strokeColor=#8796A5;fontStyle=1;fontColor=#232F3E;" vertex="1" parent="1">
+          <mxGeometry x="150" y="30" width="1360" height="920" as="geometry" />
+        </mxCell>
+        <mxCell id="3" value="AWS Region · us-east-2" style="swimlane;html=1;startSize=30;rounded=1;fillColor=#FFFFFF;strokeColor=#527FFF;fontStyle=1;fontColor=#232F3E;" vertex="1" parent="2">
+          <mxGeometry x="20" y="45" width="1320" height="850" as="geometry" />
+        </mxCell>
+        <mxCell id="4" value="Default VPC · discovered by Terraform" style="swimlane;html=1;startSize=30;rounded=1;fillColor=#F2F8FF;strokeColor=#527FFF;fontStyle=1;fontColor=#232F3E;" vertex="1" parent="3">
+          <mxGeometry x="310" y="135" width="970" height="650" as="geometry" />
+        </mxCell>
+        <mxCell id="5" value="Default VPC subnets · Fargate tasks receive public IPs" style="swimlane;html=1;startSize=30;rounded=1;fillColor=#F5FBF8;strokeColor=#3F8624;fontStyle=1;fontColor=#232F3E;" vertex="1" parent="4">
+          <mxGeometry x="30" y="70" width="910" height="485" as="geometry" />
+        </mxCell>
+        <mxCell id="6" value="Amazon ECS Cluster" style="shape=mxgraph.aws4.group;grIcon=mxgraph.aws4.group_ecs;strokeColor=#ED7100;fillColor=none;fontColor=#ED7100;fontStyle=1;verticalAlign=top;align=left;spacingLeft=34;html=1;" vertex="1" parent="5">
+          <mxGeometry x="220" y="50" width="660" height="375" as="geometry" />
+        </mxCell>
+        <mxCell id="7" value="Amazon ECS&#xa;Service · desired_count" style="shape=mxgraph.aws4.resourceIcon;resIcon=mxgraph.aws4.ecs;html=1;verticalLabelPosition=bottom;verticalAlign=top;align=center;fillColor=#D05C17;gradientColor=#F78E04;strokeColor=#FFFFFF;fontColor=#232F3E;" vertex="1" parent="6">
+          <mxGeometry x="35" y="95" width="125" height="105" as="geometry" />
+        </mxCell>
+        <mxCell id="8" value="AWS Fargate&#xa;Task(s) · awsvpc · ARM64&#xa;256 CPU units · 512 MiB" style="shape=mxgraph.aws4.resourceIcon;resIcon=mxgraph.aws4.fargate;html=1;verticalLabelPosition=bottom;verticalAlign=top;align=center;fillColor=#D05C17;gradientColor=#F78E04;strokeColor=#FFFFFF;fontColor=#232F3E;" vertex="1" parent="6">
+          <mxGeometry x="285" y="95" width="145" height="110" as="geometry" />
+        </mxCell>
+        <mxCell id="9" value="simple_name_form&#xa;giriarnab/simple_form:v1&#xa;TCP 3000" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#D05C17;fontColor=#232F3E;fontStyle=1;" vertex="1" parent="6">
+          <mxGeometry x="500" y="110" width="140" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="10" value="Task security group&#xa;TCP 3000 from VPC Link SG&#xa;All egress" style="shape=mxgraph.aws4.resourceIcon;resIcon=mxgraph.aws4.security_group;html=1;verticalLabelPosition=bottom;verticalAlign=top;align=center;fillColor=#C7131F;gradientColor=#F54749;strokeColor=#FFFFFF;fontColor=#232F3E;" vertex="1" parent="5">
+          <mxGeometry x="20" y="165" width="155" height="110" as="geometry" />
+        </mxCell>
+        <mxCell id="11" value="API Gateway VPC Link&#xa;ecs-vpc-link" style="shape=mxgraph.aws4.resourceIcon;resIcon=mxgraph.aws4.api_gateway;html=1;verticalLabelPosition=bottom;verticalAlign=top;align=center;fillColor=#5A30B5;gradientColor=#945DF2;strokeColor=#FFFFFF;fontColor=#232F3E;" vertex="1" parent="4">
+          <mxGeometry x="45" y="90" width="145" height="105" as="geometry" />
+        </mxCell>
+        <mxCell id="12" value="VPC Link security group&#xa;All egress" style="shape=mxgraph.aws4.resourceIcon;resIcon=mxgraph.aws4.security_group;html=1;verticalLabelPosition=bottom;verticalAlign=top;align=center;fillColor=#C7131F;gradientColor=#F54749;strokeColor=#FFFFFF;fontColor=#232F3E;" vertex="1" parent="4">
+          <mxGeometry x="55" y="400" width="130" height="95" as="geometry" />
+        </mxCell>
+        <mxCell id="13" value="AWS Cloud Map&#xa;Private DNS namespace: ecs.internal&#xa;Service discovery · SRV · TTL 10s" style="shape=mxgraph.aws4.resourceIcon;resIcon=mxgraph.aws4.cloud_map;html=1;verticalLabelPosition=bottom;verticalAlign=top;align=center;fillColor=#5A30B5;gradientColor=#945DF2;strokeColor=#FFFFFF;fontColor=#232F3E;" vertex="1" parent="4">
+          <mxGeometry x="580" y="445" width="205" height="115" as="geometry" />
+        </mxCell>
+        <mxCell id="14" value="Custom domain&#xa;greeter.buiz.click" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFF9F0;strokeColor=#E89932;fontColor=#232F3E;fontStyle=1;" vertex="1" parent="3">
+          <mxGeometry x="35" y="115" width="145" height="65" as="geometry" />
+        </mxCell>
+        <mxCell id="15" value="Amazon API Gateway&#xa;HTTP API · ANY / and /{proxy+}&#xa;$default stage · auto deploy" style="shape=mxgraph.aws4.resourceIcon;resIcon=mxgraph.aws4.api_gateway;html=1;verticalLabelPosition=bottom;verticalAlign=top;align=center;fillColor=#5A30B5;gradientColor=#945DF2;strokeColor=#FFFFFF;fontColor=#232F3E;" vertex="1" parent="3">
+          <mxGeometry x="40" y="285" width="170" height="125" as="geometry" />
+        </mxCell>
+        <mxCell id="16" value="Amazon CloudWatch Logs&#xa;API access logs · 30 days" style="shape=mxgraph.aws4.resourceIcon;resIcon=mxgraph.aws4.cloudwatch;html=1;verticalLabelPosition=bottom;verticalAlign=top;align=center;fillColor=#BC1356;gradientColor=#F34482;strokeColor=#FFFFFF;fontColor=#232F3E;" vertex="1" parent="3">
+          <mxGeometry x="45" y="590" width="150" height="110" as="geometry" />
+        </mxCell>
+        <mxCell id="17" value="AWS IAM&#xa;Task execution role&#xa;AmazonECSTaskExecutionRolePolicy" style="shape=mxgraph.aws4.resourceIcon;resIcon=mxgraph.aws4.identity_and_access_management;html=1;verticalLabelPosition=bottom;verticalAlign=top;align=center;fillColor=#C7131F;gradientColor=#F54749;strokeColor=#FFFFFF;fontColor=#232F3E;" vertex="1" parent="3">
+          <mxGeometry x="390" y="745" width="170" height="110" as="geometry" />
+        </mxCell>
+        <mxCell id="18" value="Amazon CloudWatch Logs&#xa;Container logs · 7 days" style="shape=mxgraph.aws4.resourceIcon;resIcon=mxgraph.aws4.cloudwatch;html=1;verticalLabelPosition=bottom;verticalAlign=top;align=center;fillColor=#BC1356;gradientColor=#F34482;strokeColor=#FFFFFF;fontColor=#232F3E;" vertex="1" parent="3">
+          <mxGeometry x="850" y="745" width="150" height="110" as="geometry" />
+        </mxCell>
+        <mxCell id="19" value="Client" style="shape=mxgraph.aws4.user;html=1;verticalLabelPosition=bottom;verticalAlign=top;align=center;fontColor=#232F3E;" vertex="1" parent="1">
+          <mxGeometry x="25" y="335" width="90" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="20" value="HTTPS · API endpoint via custom domain" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;endArrow=block;endSize=10;strokeWidth=3;strokeColor=#FF9900;fontStyle=1;fontColor=#232F3E;labelBackgroundColor=#FFFFFF;" edge="1" parent="1" source="19" target="14">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="21" value="API mapping · $default stage" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;endArrow=block;strokeWidth=2;strokeColor=#FF9900;fontColor=#232F3E;labelBackgroundColor=#FFFFFF;" edge="1" parent="1" source="14" target="15">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="22" value="HTTP_PROXY · ANY routes" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;endArrow=block;strokeWidth=3;strokeColor=#FF9900;fontColor=#232F3E;labelBackgroundColor=#FFFFFF;" edge="1" parent="1" source="15" target="11">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="420" y="395" />
+              <mxPoint x="420" y="450" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="23" value="VPC Link ENIs · selected subnets" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;endArrow=block;strokeColor=#8796A5;fontColor=#232F3E;labelBackgroundColor=#FFFFFF;" edge="1" parent="1" source="11" target="12">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="24" value="ingress allows TCP 3000 from this SG" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;endArrow=open;dashed=1;strokeColor=#C7131F;fontColor=#232F3E;labelBackgroundColor=#FFFFFF;" edge="1" parent="1" source="12" target="10">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="460" y="610" />
+              <mxPoint x="290" y="610" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="25" value="target registered by ECS service" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;endArrow=block;dashed=1;strokeColor=#8796A5;fontColor=#232F3E;labelBackgroundColor=#FFFFFF;" edge="1" parent="1" source="8" target="13">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="860" y="440" />
+              <mxPoint x="860" y="665" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="26" value="private DNS SRV integration target" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;endArrow=block;strokeColor=#FF9900;fontColor=#232F3E;labelBackgroundColor=#FFFFFF;" edge="1" parent="1" source="11" target="13">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="485" y="490" />
+              <mxPoint x="485" y="700" />
+              <mxPoint x="910" y="700" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="27" value="ECS service runs tasks" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;endArrow=block;strokeColor=#8796A5;fontColor=#232F3E;" edge="1" parent="1" source="7" target="8">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="28" value="runs" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;endArrow=block;strokeColor=#8796A5;" edge="1" parent="1" source="8" target="9">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="29" value="awslogs driver" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;endArrow=block;dashed=1;strokeColor=#8796A5;fontColor=#232F3E;labelBackgroundColor=#FFFFFF;" edge="1" parent="1" source="9" target="18">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="1000" y="495" />
+              <mxPoint x="1000" y="790" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="30" value="API access logs · 30-day retention" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;endArrow=block;dashed=1;strokeColor=#8796A5;fontColor=#232F3E;labelBackgroundColor=#FFFFFF;" edge="1" parent="1" source="15" target="16">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="31" value="assumed by Fargate for image pull and log delivery" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;endArrow=open;dashed=1;strokeColor=#C7131F;fontColor=#232F3E;labelBackgroundColor=#FFFFFF;" edge="1" parent="1" source="17" target="8">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="610" y="905" />
+              <mxPoint x="610" y="535" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
       </root>
     </mxGraphModel>
   </diagram>
