@@ -4,17 +4,18 @@ resource "aws_cloudwatch_log_group" "ecs_logs" {
   retention_in_days = 7
 }
 
-# Security Group allowing inbound traffic to the container port
+# Security Group allowing inbound traffic to the container port from vpc link
 resource "aws_security_group" "ecs_tasks" {
   name        = "${var.app_name}-ecs-sg"
   description = "Allow inbound access to the Fargate container"
   vpc_id      = data.aws_vpc.default.id
 
   ingress {
-    from_port   = var.container_port
-    to_port     = var.container_port
-    protocol    = "tcp"
-    cidr_blocks = ["0.0.0.0/0"]
+    from_port = var.container_port
+    to_port   = var.container_port
+    protocol  = "tcp"
+    # cidr_blocks = ["0.0.0.0/0"]
+    security_groups = [aws_security_group.vpc_link.id]
   }
 
   egress {
@@ -79,5 +80,12 @@ resource "aws_ecs_service" "main" {
     subnets          = data.aws_subnets.default.ids
     security_groups  = [aws_security_group.ecs_tasks.id]
     assign_public_ip = true
+  }
+
+  # Attach cloudmap to ECS service
+  service_registries {
+    registry_arn   = aws_service_discovery_service.simple_form_app.arn
+    container_name = var.app_name # Must match the name in your task definition
+    container_port = 3000         # Must match the port your container listens on
   }
 }

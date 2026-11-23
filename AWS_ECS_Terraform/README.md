@@ -7,6 +7,7 @@
 - Create ECS Cluster
 - Create ECS Task definition
 - Create ECS Service
+- Create Cloud Map to integrate ECS to HTTP API Gateway
 
 ## Architecture
 

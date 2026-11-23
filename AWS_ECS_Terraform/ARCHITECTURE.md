@@ -2,9 +2,11 @@
 
 The editable [AWS architecture diagram](ARCHITECTURE.drawio) uses AWS service icons from the draw.io AWS library. AWS provides approved architecture icons for diagrams and identifies draw.io as a diagramming option on its [architecture icons page](https://aws.amazon.com/architecture/icons/).
 
-The diagram reflects the resources and data lookups in this Terraform project. The project uses the account's default VPC and its subnets; Fargate tasks receive public IP addresses and the task security group allows inbound TCP traffic on the configured container port from `0.0.0.0/0`.
+The diagram reflects the resources and data lookups in this Terraform project. The project uses the account's default VPC and its subnets. Fargate tasks receive public IP addresses, while the task security group accepts TCP traffic on the configured container port only from the API Gateway VPC Link security group. API Gateway uses the private Cloud Map namespace and service to discover the ECS tasks.
 
 The current task definition targets Linux ARM64 with 256 CPU units and 512 MiB of memory. The configured image is `giriarnab/simple_form:v1`, exposed on TCP port 3000.
+
+The API Gateway HTTP API maps the existing custom domain `greeter.buiz.click` to its auto-deployed `$default` stage. Terraform looks up this domain rather than creating it. API access logs have 30-day retention; container logs have 7-day retention.
 
 ## Request and startup paths
 

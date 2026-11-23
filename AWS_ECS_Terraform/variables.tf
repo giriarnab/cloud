@@ -53,4 +53,9 @@ variable "desired_count" {
   default     = 1
 }
 
+variable "domain_name" {
+  description = "Custom domain name"
+  type        = string
+}
+
 
