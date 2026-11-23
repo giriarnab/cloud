@@ -45,7 +45,7 @@ data "aws_api_gateway_domain_name" "this" {
 # Map API Gateway to custom domain
 resource "aws_apigatewayv2_api_mapping" "http_api_mapping" {
   api_id          = aws_apigatewayv2_api.name_form_api.id
-  api_mapping_key = "form"
+  # api_mapping_key = "form"
   domain_name     = data.aws_api_gateway_domain_name.this.id
   stage           = aws_apigatewayv2_stage.http_api_stage.id
 }
